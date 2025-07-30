@@ -11,8 +11,24 @@ const PORT = process.env.PORT || 3000;
 // Isso é importante para receber dados do front-end
 app.use(express.json());
 
-// --- Rotas da API ---
+// --- NOVO: Serve arquivos estáticos da pasta 'public' ---
+app.use(express.static('public'));
+// --------------------------------------------------------
 
+// ... suas rotas existentes ...
+
+// Rota inicial (Root Route) - Esta rota agora é menos necessária,
+// pois o Express.static vai servir o index.html por padrão
+// app.get('/', (req, res) => {
+//   res.send('Bem-vindo à nossa Rede Social Simples!');
+// });
+
+// ... e o resto do seu código ...
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log('Pressione Ctrl+C para parar o servidor.');
+});
 // Rota inicial (Root Route)
 // Quando alguém acessar a URL base do seu servidor (ex: http://localhost:3000)
 app.get('/', (req, res) => {
